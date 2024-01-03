@@ -6,7 +6,7 @@ import java.util.Set;
 import javax.persistence.*;
 
 @Entity
-//@NamedQuery (name="ticket_products", query="select distinct i.product.name from com.ceva.Ticket t join t.items i where t.id_ticket=:id_ticket")
+@NamedQuery (name="ticket_products", query="select distinct i.product.name from com.ceva.Ticket t join t.items i where t.id_ticket=:id_ticket")
 public class Ticket {
     private int id_ticket;
     private Customer customer;
