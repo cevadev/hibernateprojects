@@ -72,6 +72,9 @@ public class Ticket {
         this.items = items;
     }
 
+    // metodo que permite establecer ambos lados de la relacion
+    // al ticketitem le agrega el ticket
+    // a la coleccion items agrega el ticketitem
     public void addTicketItem(TicketItem ti) {
         ti.setTicket(this);
         getItems().add(ti);

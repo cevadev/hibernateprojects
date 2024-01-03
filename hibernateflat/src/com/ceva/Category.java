@@ -47,14 +47,14 @@ public class Category {
 
     // 3ra version: many-to-many bidireccional es decir
     //              en la clase products hay una coleccion a las categorias
-//    @ManyToMany(cascade=CascadeType.ALL, mappedBy="categories")
-
+    @ManyToMany(cascade=CascadeType.ALL, mappedBy="categories")
+/*
     @ManyToMany (cascade=CascadeType.ALL)
     @JoinTable (name="product_category",
         joinColumns = @JoinColumn(name="id_category"),
         inverseJoinColumns = @JoinColumn(name="id_product")
     )
-
+*/
     public Set<Product> getProducts() {
         return products;
     }
@@ -64,7 +64,7 @@ public class Category {
     }
 
     public void addProduct(Product product) {
-        // establecemos la relacion en ambos lados de la relacion
+        // establecemos ambos lados de la relacion: product - category
         getProducts().add(product);
         product.getCategories().add(this);
     }
