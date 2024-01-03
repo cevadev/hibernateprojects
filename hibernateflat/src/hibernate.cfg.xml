@@ -17,9 +17,8 @@
 
         <mapping class="com.ceva.Customer"/>
         <mapping class="com.ceva.Ticket"/>
-<!--
-        <mapping class="com.rcosio.TicketItem"/>
-        <mapping class="com.rcosio.Category"/>
--->
+        <mapping class="com.ceva.TicketItem"/>
+        <mapping class="com.ceva.Category"/>
+
     </session-factory>
 </hibernate-configuration>

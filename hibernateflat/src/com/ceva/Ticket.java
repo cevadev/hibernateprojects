@@ -3,18 +3,7 @@ package com.ceva;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 //@NamedQuery (name="ticket_products", query="select distinct i.product.name from com.ceva.Ticket t join t.items i where t.id_ticket=:id_ticket")
@@ -22,7 +11,9 @@ public class Ticket {
     private int id_ticket;
     private Customer customer;
     private java.util.Date ticketDate;
-    //private Set<TicketItem> items = new HashSet<>();
+    // La relacion OneToMany se representa con colecciones
+    // La clase Ticke tendra una coleccion de elementos TicketItem
+    private Set<TicketItem> items = new HashSet<>();
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -63,8 +54,16 @@ public class Ticket {
     public void setTicketDate(Date ticketDate) {
         this.ticketDate = ticketDate;
     }
-/*
-    @OneToMany(cascade=CascadeType.ALL, mappedBy="ticket")
+
+    /**
+     * marcamos al getter de la coleccion Items con OneToMany
+     * mappedBy especifica la entidad a la que pertenece la relacion
+     * ahora la entidad Ticket tiene una relacion OneToMany con TicketItem
+     * Por defecto se aplica un fetch de tipo lazy
+     * FetchType.EAGER significa que hibernate no sera flojo al leer la informacion sino
+     * impaciente.
+     */
+    @OneToMany(cascade=CascadeType.ALL, mappedBy="ticket", fetch = FetchType.EAGER)
     public Set<TicketItem> getItems() {
         return items;
     }
@@ -76,5 +75,5 @@ public class Ticket {
     public void addTicketItem(TicketItem ti) {
         ti.setTicket(this);
         getItems().add(ti);
-    }*/
+    }
 }

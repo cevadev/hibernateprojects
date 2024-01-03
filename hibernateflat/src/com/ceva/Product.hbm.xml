@@ -7,11 +7,10 @@
         </id>
         <property name="name" column="NAME" type="string"/>
         <property name="price" column="PRICE" type="double"/>
-<!--
+
         <set name="categories" table="product_category" cascade="all">
             <key column="id_product"/>
             <many-to-many class="Category" column="id_category"/>
         </set>
--->
     </class>
 </hibernate-mapping>
